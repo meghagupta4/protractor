@@ -1,0 +1,318 @@
+describe('Financials Page', function () {
+    it('Login Page', function () {
+      browser.waitForAngularEnabled(false);
+      browser.get('https://qa-engagesubsea.us04.bhge.com');
+      element(by.id('username')).sendKeys('502766103');
+      element(by.id('password')).sendKeys('Engage_2019_Ge');
+      element(by.id('submitFrm')).click();
+      browser.waitForAngularEnabled(true);
+    });
+    //it('Change customer to apache', function () {
+      //browser.sleep(1000);
+        //element(by.className('nav-bar-list')).click();
+        //element(by.xpath('/html/body/div[4]/div[2]/div/div/div/button[2]')).click();
+     // });
+    it('Open FinancialsPage', function () {
+      //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[2]/a/button')).click();
+      //element(by.xpath('/html/body/div[4]/div[2]/div/div/div/button[1]')).click();
+      browser.get('https://qa-engagesubsea.us04.bhge.com/finances');
+    });
+    it('Check Financials Header Text', function () {
+        var text = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[1]/bhge-page-header/div'));
+        expect(text.getText()).toEqual('Finances');
+    });
+    it('Check Region Filter Text', function () {
+        var Region = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[1]/div/div[2]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+        expect(Region.getText()).toEqual('REGION');
+      });
+    it('Check Country Filter Text', function () {
+        var country = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[1]/div/div[3]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+        expect(country.getText()).toEqual('COUNTRY');
+      }); 
+    it('Check ProductLine Filter Text', function () {
+        var productline = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[1]/div/div[4]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+        expect(productline.getText()).toEqual('PRODUCT LINE');
+      });
+    it('Check PastDueCategory Filter Text', function () {
+        var pastduecategory = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[1]/div/div[5]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+        expect(pastduecategory.getText()).toEqual('PAST DUE CATEGORY');
+      }); 
+      it('Check InvoiceByMonth', function () {
+        var invoicebymonth = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[1]/div/div[6]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+        expect(invoicebymonth.getText()).toEqual('INVOICE BY MONTH');
+      });
+      it('Check Region Filter', function () {
+        var paginator = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[1]/div'));
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[1]/div/div[2]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span')).click();
+        //element(by.xpath('/html/body/div[3]/div[2]/div/div/div/mat-option[2]/mat-pseudo-checkbox')).click();
+        element(by.css('mat-select[aria-label="REGION"]>div:nth-of-type(1)>div:nth-of-type(1)>span')).click();
+        element(by.css('mat-option:nth-of-type(2)>span')).click();
+        browser.sleep(2000);
+        var paginatorAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[1]/div'));
+        //element(by.xpath('/html/body/div[3]/div[2]/div/div/div/mat-option[2]/mat-pseudo-checkbox')).click();
+        element(by.css('mat-option:nth-of-type(2)>span')).click();
+        var paginatorAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[1]/div'));
+        expect(paginator.getText()).toBe(paginatorAfter1.getText());
+        browser.sleep(1000);
+        browser.refresh();
+      });
+      it('Check Country Filter', function () {
+        var paginator = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[1]/div/div[3]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span')).click();
+        //element(by.xpath('/html/body/div[3]/div[2]/div/div/div/mat-option[2]/span')).click();
+        element(by.css('mat-select[aria-label="COUNTRY"]>div:nth-of-type(1)>div:nth-of-type(1)>span')).click();
+        element(by.css('mat-option:nth-of-type(2)>span')).click();
+        browser.sleep(2000);
+        var paginatorAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        //element(by.xpath('/html/body/div[3]/div[2]/div/div/div/mat-option[2]/span')).click();
+        element(by.css('mat-option:nth-of-type(2)>span')).click();
+        var paginatorAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(paginator.getText()).toBe(paginatorAfter1.getText());
+        browser.sleep(1000);
+        browser.refresh();
+      });
+      it('Check ProductLine Filter', function () {
+        var paginator = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[1]/div/div[4]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span')).click();
+        //element(by.xpath('/html/body/div[3]/div[2]/div/div/div/mat-option[2]/span')).click();
+        element(by.css('mat-select[aria-label="PRODUCT LINE"]>div:nth-of-type(1)>div:nth-of-type(1)>span')).click();
+        element(by.css('mat-option:nth-of-type(2)>span')).click();
+        browser.sleep(2000);
+        var paginatorAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        //element(by.xpath('/html/body/div[3]/div[2]/div/div/div/mat-option[2]/span')).click();
+        element(by.css('mat-option:nth-of-type(2)>span')).click();
+        var paginatorAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(paginator.getText()).toBe(paginatorAfter1.getText());
+        browser.sleep(1000);
+        browser.refresh();
+      });
+      it('Check PastDueCategory Filter', function () {
+        var paginator = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[1]/div/div[5]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span')).click();
+        //element(by.xpath('/html/body/div[3]/div[2]/div/div/div/mat-option[2]/span')).click();
+        element(by.css('mat-select[aria-label="PAST DUE CATEGORY"]>div:nth-of-type(1)>div:nth-of-type(1)>span')).click();
+        element(by.css('mat-option:nth-of-type(2)>span')).click();
+        browser.sleep(2000);
+        var paginatorAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/html/body/div[3]/div[2]/div/div/div/mat-option[2]/mat-pseudo-checkbox/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        //element(by.xpath('/html/body/div[3]/div[2]/div/div/div/mat-option[2]/span')).click();
+        element(by.css('mat-option:nth-of-type(2)>span')).click();
+        var paginatorAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(paginator.getText()).toBe(paginatorAfter1.getText());
+        browser.sleep(1000);
+        browser.refresh();
+      });
+      it('Check InvoiceByMonth Filter', function () {
+        var paginator = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[1]/div/div[6]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span')).click();
+        //element(by.xpath('/html/body/div[3]/div[2]/div/div/div/mat-option[2]/span')).click();
+        element(by.css('mat-select[aria-label="INVOICE BY MONTH"]>div:nth-of-type(1)>div:nth-of-type(1)>span')).click();
+        element(by.css('mat-option:nth-of-type(2)>span')).click();
+        browser.sleep(2000);
+        var paginatorAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        //element(by.xpath('/html/body/div[3]/div[2]/div/div/div/mat-option[2]/span')).click();
+        element(by.css('mat-option:nth-of-type(2)>span')).click();
+        var paginatorAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(paginator.getText()).toBe(paginatorAfter1.getText());
+        browser.sleep(1000);
+        browser.refresh();
+      });
+      it('Total Past Due Chart Text', function () {
+        var TotalPastDue = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[3]/div[1]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+        expect(TotalPastDue.getText()).toBe('Total Past Due');
+      });
+    it('Open Invoices Forecast Chart Text', function () {
+        var OpenInvoicesForecast = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[3]/div[2]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+        expect(OpenInvoicesForecast.getText()).toBe('Open Invoices Forecast');
+      });
+    it('Past Due By Category Chart Text', function () {
+        var PastDueByCategory = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[4]/div[1]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+        expect(PastDueByCategory.getText()).toBe('Past Due By Category');
+      });
+      it('Total Open Details Chart Text', function () {
+        var TotalOpenDetails = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[4]/div[2]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+        expect(TotalOpenDetails.getText()).toBe('Total Open Details');
+      });
+      it('Customer Document Number Table Header Check', function () {
+        var CustomerDocumentNumber = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[1]/div/button'));
+        expect(CustomerDocumentNumber.getText()).toEqual('Customer Document Number');
+      });
+      it('Amount USD Table Header Check', function () {
+        var AmountUSD = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[1]/div/button'));
+        expect(AmountUSD.getText()).toEqual('Amount USD'); 
+      });
+        it('Due Date Table Header Check', function () {
+        var DueDate = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[3]/div/div[1]/div/button'));
+        expect(DueDate.getText()).toEqual('Due Date');
+      });
+      it('Age Table Header Check', function () {
+        var AgeHeader = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[4]/div/div[1]/div/button'));
+        expect(AgeHeader.getText()).toEqual('Age');
+      });
+       it('Billing Document Number Table Header Check', function () {
+        var BillingDocuntmeNumber = element(by.css('button[aria-label="Change sorting for clientBillDocumentNumber"]')).click();
+        expect(BillingDocumentNumber.getText()).toEqual('Billing Document Number');
+      });
+      it('Customer Invoice Currency Amount Table Header Check', function () {
+        var CustomerInvoiceCurrencyAmount = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[6]/div/div[1]/div/button'));
+        expect(CustomerInvoiceCurrencyAmount.getText()).toEqual('Customer Invoice Currency Amount');
+      });
+      it('Customer Document Number Valid search', function () {
+        browser.refresh();
+        var searchText = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[1]/div/div'));
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/input')).sendKeys(searchText.getText());
+        var result = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr/td[1]/div/div'));
+        expect(result.getText()).toBe(searchText.getText());
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/span/i')).click();
+      });
+      it('Amount USD Valid search', function () {
+        browser.refresh();
+        var searchText = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[2]/div/div'));
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[2]/span/input')).sendKeys(searchText.getText());
+        var result = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[2]/div/div'));
+        expect(result.getText()).toBe(searchText.getText());
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[2]/span/span/i')).click();
+      });
+      it('Age Valid search', function () {
+        browser.refresh();
+        var searchText = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[4]/div/div'));
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[4]/div/div[2]/span/input')).sendKeys(searchText.getText());
+        var result = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr/td[4]/div/div'));
+        expect(result.getText()).toBe(searchText.getText());
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[4]/div/div[2]/span/span/i')).click();
+      });
+      it('Billing Document Number Valid search', function () {
+        browser.refresh();
+        var searchText = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[5]/div/div'));
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[5]/div/div[2]/span/input')).sendKeys(searchText.getText());
+        var result = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr/td[5]/div/div'));
+        expect(result.getText()).toBe(searchText.getText());
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[5]/div/div[2]/span/span/i')).click();
+      });
+      it('Customer Invoice Currency Amount Valid search', function () {
+        browser.refresh();
+        var searchText = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[6]/div/div'));
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[6]/div/div[2]/span/input')).sendKeys(searchText.getText());
+        var result = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr/td[6]/div/div'));
+        expect(result.getText()).toBe(searchText.getText());
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/span/i')).click();
+      }); 
+      it('Customer Document Number Invalid search', function () {
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/input')).sendKeys('xyz').click();
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[2]/div')).click();
+        var name = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(name.getText()).toBe('No results');
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/span/i')).click();
+      });
+      it('Amount USD Invalid search', function () {
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[2]/span/input')).sendKeys('xyz').click();
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[2]/div')).click();
+        var name = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(name.getText()).toBe('No results');
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[2]/span/span/i')).click();
+      });
+      it('Age Invalid search', function () {
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[4]/div/div[2]/span/input')).sendKeys('xyz').click();
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[2]/div')).click();
+        var name = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(name.getText()).toBe('No results');
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[4]/div/div[2]/span/span/i')).click();
+      });
+      it('Billing Document Number Invalid search', function () {
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[5]/div/div[2]/span/input')).sendKeys('xyz').click();
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[2]/div')).click();
+        var name = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(name.getText()).toBe('No results');
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[5]/div/div[2]/span/span/i')).click();
+      });
+      it('Customer Invoice Currency Amount Invalid search', function () {
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[6]/div/div[2]/span/input')).sendKeys('xyz').click();
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[2]/div')).click();
+        var name = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(name.getText()).toBe('No results');
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[6]/div/div[2]/span/span/i')).click();
+      });
+      it('Export to excel', function () {
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[2]/div/bhge-export-excel/button')).click();
+      });
+      it('Disable Export to excel', function () {
+      element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/input')).sendKeys('xyz').click();
+      var excelbutton = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[2]/div/bhge-export-excel/button'));
+       expect(excelbutton.isEnabled()).toBe(false);
+      }); 
+      it('Check itemsperpage Text', function () {
+        browser.refresh();
+        var itemsperpage = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[1]/div'));
+        expect(itemsperpage.getText()).toEqual('Items per page');
+        });
+      it('Change customer to Petrobras', function () {
+        browser.refresh();
+        broswer.sleep(5000);
+        //element(by.className('nav-bar-list')).click();
+        //element(by.xpath('/html/body/div[6]/div[2]/div/div/div/button[5]')).click();
+        //element(by.css('div:nth-of-type(18)>button>span>div')).click();
+        //element(by.css('button:nth-of-type(5)')).click();
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[2]/button/span/mat-icon')).click();
+        
+      });
+      it('Check popup ok button', function () {
+        var popupokbutton = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/bhge-alert/div/div[2]/div[3]/button')).click();
+        //expect(popup.getText()).toEqual('Finanças');
+    });
+      it('Check Finanças Header Text', function () {
+        var text = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[1]/bhge-page-header/div'));
+        expect(text.getText()).toEqual('Finanças');
+    });
+    it('Check REGIÃO Filter Text', function () {
+        var REGIÃOText = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[1]/div/div[2]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+        expect(REGIÃOText.getText()).toEqual('REGIÃO');
+      });
+    it('Check PAÍS Filter Text', function () {
+        var PAÍSText = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[1]/div/div[3]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+        expect(PAÍSText.getText()).toEqual('PAÍS');
+      }); 
+    it('Check LINHA DE PRODUTO Filter Text', function () {
+        var LINHADEPRODUTO = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[1]/div/div[4]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+        expect(LINHADEPRODUTO.getText()).toEqual('LINHA DE PRODUTO');
+      });
+    it('Check CATEGORIA DE PASSADO PASSADO Filter Text', function () {
+        var CATEGORIADEPASSADOPASSADO = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[1]/div/div[5]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+        expect(CATEGORIADEPASSADOPASSADO.getText()).toEqual('CATEGORIA DE PASSADO PASSADO');
+      }); 
+      it('Check FATURA POR MÊS Filter Text', function () {
+        var FATURAPORMÊS = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[1]/div/div[6]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+        expect(FATURAPORMÊS.getText()).toEqual('FATURA POR MÊS');
+      }); 
+      it('Customer Número do documento do cliente Table Header Check', function () {
+        var Númerododocumentodocliente = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[1]/div/button'));
+        expect(Númerododocumentodocliente.getText()).toEqual('Número do documento do cliente');
+      });
+      it('Quantidade USD Table Header Check', function () {
+        var QuantidadeUSD = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[1]/div/button'));
+        expect(QuantidadeUSD.getText()).toEqual('Quantidade USD');
+      });
+        it('Data de Vencimento Table Header Check', function () {
+        var DatadeVencimento = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[3]/div/div[1]/div/button'));
+        expect(DatadeVencimento.getText()).toEqual('Data de Vencimento');
+      });
+      it('Era Table Header Check', function () {
+        var EraHeader = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[4]/div/div[1]/div/button'));
+        expect(EraHeader.getText()).toEqual('Era');
+      });
+       it('Número do documento de faturamento Table Header Check', function () {
+        var Númerododocumentodefaturamento = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[5]/div/div[1]/div/button'));
+        expect(Númerododocumentodefaturamento.getText()).toEqual('Número do documento de faturamento');
+      });
+      it('Moeda da fatura Table Header Check', function () {
+        var Moedadafatura = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[6]/div/div[1]/div/button'));
+        expect(Moedadafatura.getText()).toEqual('Moeda da fatura');
+      });
+      it('Disable  Exportar para o Excel', function () {
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/input')).sendKeys('xyz').click();
+        var excelbutton = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-finances/div[1]/div[2]/div[2]/div[5]/div/bhge-mat-table-card/mat-card/div[2]/div/bhge-export-excel/button'));
+         expect(excelbutton.isEnabled()).toBe(false);
+        }); 
+        it('Check Itens por página Text', function () {
+            var Itensporpágina = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[1]/div'));
+           expect(Itensporpágina.getText()).toEqual('Itens por página');
+          });
+});

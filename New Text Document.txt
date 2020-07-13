@@ -1,0 +1,4 @@
+----------
+C:\Users\212704032\AppData\Roaming\npm\node_modules\protractor\example
+
+C:\Users\212704032\AppData\Roaming\npm\node_modules\protractor\node_modules\webdriver-manager\selenium

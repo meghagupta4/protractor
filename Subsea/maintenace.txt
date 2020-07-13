@@ -1,0 +1,447 @@
+describe('Maintenance Page', function () {
+    it('Login Page', function () {
+      browser.waitForAngularEnabled(false);
+      browser.get('https://qa-engagesubsea.us04.bhge.com');
+      element(by.id('username')).sendKeys('502766103');
+      element(by.id('password')).sendKeys('Engage_2019_Ge');
+      element(by.id('submitFrm')).click();
+      browser.waitForAngularEnabled(true);
+    });
+    it('Change customer to Chevron', function () {
+      element(by.className('nav-bar-list')).click();
+      element(by.xpath('/html/body/div[4]/div[2]/div/div/div/button[2]')).click();
+    });
+    it('Open MaintenancePage', function () {
+      //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[2]/a/button')).click();
+      //element(by.xpath('/html/body/div[4]/div[2]/div/div/div/button[1]')).click();
+      browser.get('https://qa-engagesubsea.us04.bhge.com/maintenance/forecast');
+    });
+    it('Check PM Header Text', function () {
+        var text = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[1]/bhge-page-header/div'));
+        expect(text.getText()).toEqual('Preventative Maintenance Forecast');
+      });
+    //   it('Level of Maintenance Breakdown Chart XaxsisText', function () {
+    //    browser.sleep(2000);
+    //     element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[1]/div[1]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+    //    var LevelofMaintenanceBreakdownXaxis = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[1]/div[1]/bhge-chart-card/mat-card/bhge-chart/highcharts-chart/div/svg/g[4]/text'));
+    //    expect(LevelofMaintenanceBreakdownXaxis.getText()).toBe('Count');
+    //  });
+    // it('Check Filters Header Text', function () {
+    //   var text = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[1]/div/div[1]'));
+    //   expect(text.getText()).toEqual('FILTERS');
+    // });
+    it('Check Month Filter Text', function () {
+        var Month = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[1]/div/div[2]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+        expect(Month.getText()).toEqual('MONTH');
+      });
+    it('Check levelofmaintenance Filter Text', function () {
+        var levelofmaintenance = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[1]/div/div[3]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+        expect(levelofmaintenance.getText()).toEqual('LEVEL OF MAINTENANCE');
+      }); 
+    it('Check itemcategory Filter Text', function () {
+        var itemcategory = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[1]/div/div[4]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+        expect(itemcategory.getText()).toEqual('ITEM CATEGORY');
+      });
+    it('Check year', function () {
+        var year = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[1]/div/div[5]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+        expect(year.getText()).toEqual('YEAR');
+      });  
+    it('Check month Filter', function () {
+        var paginator = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        element(by.css('mat-select[aria-label="MONTH"]>div:nth-of-type(1)>div:nth-of-type(1)>span')).click();
+        element(by.css('mat-option:nth-of-type(2)>span')).click();
+        browser.sleep(5000);
+        var paginatorAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        element(by.css('mat-option:nth-of-type(2)>span')).click();
+        var paginatorAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(paginator.getText()).toBe(paginatorAfter1.getText());
+        browser.sleep(1000);
+        browser.refresh();
+      });
+    it('Check LevelofMaintenance Filter', function () {
+      //browser.executeScript("$('.cdk-overlay-backdrop .cdk-overlay-transparent-backdrop .cdk-overlay-backdrop-showing').remove();")
+        var paginator = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        element(by.css('mat-select[aria-label="LEVEL OF MAINTENANCE"]>div:nth-of-type(1)>div:nth-of-type(1)>span')).click();
+        element(by.css('mat-option:nth-of-type(2)>span')).click();
+        browser.sleep(2000);
+        var paginatorAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        element(by.css('mat-option:nth-of-type(2)>span')).click();
+        var paginatorAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(paginator.getText()).toBe(paginatorAfter1.getText());
+        browser.sleep(1000);
+        browser.refresh();
+      });
+      it('Check Itemcategory Filter', function () {
+        var paginator = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[1]/div/div[4]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span')).click();
+        element(by.xpath('/html/body/div[6]/div[2]/div/div/div/mat-option[2]/mat-pseudo-checkbox')).click();
+        browser.sleep(2000);
+        var paginatorAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        element(by.xpath('/html/body/div[6]/div[2]/div/div/div/mat-option[2]/mat-pseudo-checkbox')).click();
+        var paginatorAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(paginator.getText()).toBe(paginatorAfter1.getText());
+        browser.sleep(1000);
+        browser.refresh();
+      });
+      it('Check Year Filter', function () {
+        var paginator = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[1]/div/div[5]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span')).click();
+        element(by.xpath('/html/body/div[6]/div[2]/div/div/div/mat-option[2]/mat-pseudo-checkbox')).click();
+        browser.sleep(2000);
+        var paginatorAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        element(by.xpath('/html/body/div[6]/div[2]/div/div/div/mat-option[2]/mat-pseudo-checkbox')).click();
+        var paginatorAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(paginator.getText()).toBe(paginatorAfter1.getText());
+        browser.sleep(1000);
+      });
+      // it('Clear All', function () {
+      //   browser.refresh();
+      //   var totalCount = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      //   element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[1]/div/div[5]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span')).click();
+      //   element(by.xpath('/html/body/div[6]/div[2]/div/div/div/mat-option[2]/mat-pseudo-checkbox')).click();
+      //   element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[1]/div/div[1]/button')).click();
+      //   var totalCountAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      //   expect(totalCount.getText()).toBe(totalCountAfter1.getText());
+      //   browser.sleep(1000);
+      // });
+      // it('Clear All', function () { 
+      //   element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[1]/div/div[5]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span')).click();
+      //   element(by.xpath('/html/body/div[6]/div[2]/div/div/div/mat-option[2]/mat-pseudo-checkbox')).click();
+      //   var clickbutton =  element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[1]/div/div[1]/button'));
+      //  expect(clickbutton.isEnabled()).toBe(false);
+      // });
+        it('Level of Maintenance Breakdown Chart Text', function () {
+        var LevelofMaintenanceBreakdown = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[1]/div[1]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+        expect(LevelofMaintenanceBreakdown.getText()).toBe('Level of Maintenance Breakdown');
+      });
+    it('Item Category Breakdown Chart Text', function () {
+        var ItemCategoryBreakdown = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[1]/div[2]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+        expect(ItemCategoryBreakdown.getText()).toBe('Item Category Breakdown');
+      });
+    it('Maintenance Cost By Level of Maintenance Chart Text', function () {
+        var MaintenanceCostByLevelofMaintenance = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[1]/div[3]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+        expect(MaintenanceCostByLevelofMaintenance.getText()).toBe('Maintenance Cost By Level of Maintenance');
+      });
+    it('Maintenance Cost by Item Category Chart Text', function () {
+        var MaintenanceCostbyItemCategory = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[1]/div[4]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+        expect(MaintenanceCostbyItemCategory.getText()).toBe('Maintenance Cost by Item Category');
+      });
+      it('Maintenance Count by Level of Maintenance Chart Text', function () {
+        var MaintenanceCountbyLevelofMaintenance = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[1]/div[5]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+        expect(MaintenanceCountbyLevelofMaintenance.getText()).toBe('Maintenance Count by Level of Maintenance');
+      });
+      it('Maintenance Count By Item Category Chart Text', function () {
+        var MaintenanceCountByItemCategory = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[1]/div[6]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+        expect(MaintenanceCountByItemCategory.getText()).toBe('Maintenance Count By Item Category');
+      });
+      it('Maintenance Hours by Level of Maintenance Chart Text', function () {
+        var MaintenanceHoursbyLevelofMaintenance = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[1]/div[7]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+        expect(MaintenanceHoursbyLevelofMaintenance.getText()).toBe('Maintenance Hours by Level of Maintenance');
+      });
+      it('Maintenance Hours By Item Category Chart Text', function () {
+        var MaintenanceHoursByItemCategory = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[1]/div[8]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+        expect(MaintenanceHoursByItemCategory.getText()).toBe('Maintenance Hours By Item Category');
+      });
+      it('ItemNumber Table Header Check', function () {
+        var itemNumber = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[1]/div/button'));
+        expect(itemNumber.getText()).toEqual('Item Number');
+      });
+      it('SerialNumber Table Header Check', function () {
+        var serialNumber = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[1]/div/button'));
+        expect(serialNumber.getText()).toEqual('Serial Number');
+      });
+        it('AssetNumber Table Header Check', function () {
+        var assetNumber = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[3]/div/div[1]/div/button'));
+        expect(assetNumber.getText()).toEqual('Asset Number');
+      });
+      it('ItemDescription Table Header Check', function () {
+        var itemdescription = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[4]/div/div[1]/div/button'));
+        expect(itemdescription.getText()).toEqual('Item Description');
+      });
+       it('LastWorkActivity Table Header Check', function () {
+        var lastworkactivity = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[5]/div/div[1]/div/button'));
+        expect(lastworkactivity.getText()).toEqual('Last Work Activity');
+      });
+      it('DateCompleted Table Header Check', function () {
+        var Datecompleted = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[6]/div/div[1]/div/button'));
+        expect(Datecompleted.getText()).toEqual('Date Completed');
+      });
+      it('ScheduleForecastDate Table Header Check', function () {
+        var Scheduleforecastdate = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[7]/div/div[1]/div/button'));
+        expect(Scheduleforecastdate.getText()).toEqual('Schedule Forecast Date');
+      });
+      it('ScheduleForecastActivity Table Header Check', function () {
+        var Scheduleforecastactivity = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[8]/div/div[1]/div/button'));
+        expect(Scheduleforecastactivity.getText()).toEqual('Schedule Forecast Activity');
+      });
+      // it('Level of Maintenance Breakdown Chart XaxsisText', function () {
+      //   //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[1]/div[1]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+      //   var LevelofMaintenanceBreakdownXaxis = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[1]/div[1]/bhge-chart-card/mat-card/bhge-chart/highcharts-chart/div/svg/g[4]/text'));
+      //   expect(LevelofMaintenanceBreakdownXaxis.getText()).toBe('Count');
+      // });
+      it('ItemNumber Valid search', function () {
+        browser.refresh();
+        var searchText = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[1]/div/div'));
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/input')).sendKeys(searchText.getText());
+        var result = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[1]/div/div'));
+        expect(result.getText()).toBe(searchText.getText());
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/span/i')).click();
+      });
+      // it('SerialNumber Valid search', function () {
+      //   var paginator = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      //   var searchText = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[2]/div/div'));
+      //   element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[2]/span/input')).sendKeys(searchText.getText());
+      //   //var result = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[1]/div/div'));
+      //   //expect(result.getText()).toBe(searchText.getText());
+      //   //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/span/i')).click();
+      //   var paginatorAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      //   element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[2]/span/span/i')).click();
+      //   var paginatorAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      //   expect(paginator.getText()).toBe(paginatorAfter1.getText());
+      // });
+      it('SerialNumber Valid search', function () {
+        browser.refresh();
+        var searchText = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[2]/div/div'));
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[2]/span/input')).sendKeys(searchText.getText());
+        var result = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[2]/div/div'));
+        expect(result.getText()).toBe(searchText.getText());
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[2]/span/span/i')).click();
+      });
+      it('AssetNumber Valid search', function () {
+        //browser.refresh();
+        var searchText = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[3]/div/div'));
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[3]/div/div[2]/span/input')).sendKeys(searchText.getText());
+        var result = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[3]/div/div'));
+        expect(result.getText()).toBe(searchText.getText());
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[3]/div/div[2]/span/span/i')).click();
+      });
+      it('Itemdescription Valid search', function () {
+        browser.refresh();
+        var searchText = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[4]/div/div'));
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[4]/div/div[2]/span/input')).sendKeys(searchText.getText());
+        var result = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[4]/div/div'));
+        expect(result.getText()).toBe(searchText.getText());
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[4]/div/div[2]/span/span/i')).click();
+      });
+      it('Lastworkactivity Valid search', function () {
+        //browser.refresh();
+        var searchText = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[5]/div/div'));
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[5]/div/div[2]/span/input')).sendKeys(searchText.getText());
+        var result = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[5]/div/div'));
+        expect(result.getText()).toBe(searchText.getText());
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[5]/div/div[2]/span/span/i')).click();
+      });
+      it('Scheduleforecastactivity Valid search', function () {
+        browser.refresh();
+        var searchText = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[8]/div/div'));
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[8]/div/div[2]/span/input')).sendKeys(searchText.getText());
+        var result = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[8]/div/div'));
+        expect(result.getText()).toBe(searchText.getText());
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[8]/div/div[2]/span/span/i')).click();
+      });
+      // it('ItemNumber Invalid search', function () {
+      // browser.refresh();
+      // element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/input')).sendKeys('xyz').click();
+      // //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[2]/div')).click();
+      // //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[2]/div')).click();
+      // var name = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      // //var name = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      // expect(name.getText()).toBe('No results');
+      // element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/span/i')).click();
+      // });
+      it('SerialNumber Invalid search', function () {
+        browser.refresh();
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[2]/span/input')).sendKeys('xyz').click();
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[2]/span/input')).click();
+        var name = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(name.getText()).toBe('No results');
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[2]/span/span/i')).click();
+      });
+      it('AssetNumber Invalid search', function () {
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[3]/div/div[2]/span/input')).sendKeys('xyz').click();
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[2]/div')).click();
+        var name = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(name.getText()).toBe('No results');
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[3]/div/div[2]/span/span/i')).click();
+      });
+      it('Itemdescription Invalid search', function () {
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[4]/div/div[2]/span/input')).sendKeys('xyz').click();
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[2]/div')).click();
+        var name = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(name.getText()).toBe('No results');
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[4]/div/div[2]/span/span/i')).click();
+      });
+      it('Lastworkactivity Invalid search', function () {
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[5]/div/div[2]/span/input')).sendKeys('xyz').click();
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[2]/div')).click();
+        var name = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(name.getText()).toBe('No results');
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[5]/div/div[2]/span/span/i')).click();
+      });
+      it('Scheduleforecastactivity Invalid search', function () {
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[8]/div/div[2]/span/input')).sendKeys('xyz').click();
+        //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[2]/div')).click();
+        var name = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+        expect(name.getText()).toBe('No results');
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[8]/div/div[2]/span/span/i')).click();
+      });
+      it('Export to excel', function () {
+        element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[2]/div/bhge-export-excel/button')).click();
+      });
+      it('Disable Export to excel', function () {
+      element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[8]/div/div[2]/span/input')).sendKeys('xyz').click();
+      var excelbutton = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[2]/div/bhge-export-excel/button'));
+       expect(excelbutton.isEnabled()).toBe(false);
+      });
+      // it('DateCompleted Valid search', function () {
+      //   browser.refresh();
+      //   var paginator = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      //   element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[6]/div/div[2]/span/input')).click();
+      //   element(by.xpath('/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/mat-calendar-header/div/div/button[1]/span/div')).click();
+      //   element(by.xpath('/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-multi-year-view/table/tbody/tr[1]/td[4]/div')).click();
+      //   element(by.xpath('/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-year-view/table/tbody/tr[3]/td[3]/div')).click();
+      //   element(by.xpath('/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[5]/td[6]/div')).click();
+      //   var paginatorAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      //   element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[6]/div/div[2]/span/span[2]/i')).click();
+      //   var paginatorAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      //   expect(paginator.getText()).toBe(paginatorAfter1.getText());
+      // }); 
+      // it('DateCompleted1 Valid search', function () {
+      // browser.refresh();
+      // var paginator = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      // element(by.css('div:nth-of-type(9)>span:nth-of-type(1)>input')).click();
+      // element(by.css('button[aria-label="Choose date"]>span>div')).click();
+      // element(by.css('td[aria-label="2019"]>div')).click();
+      // element(by.css('td[aria-label="07 2019"]>div')).click();
+      // element(by.css('td[aria-label="26-07-2019"]>div')).click();
+      // var paginatorAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      // element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[6]/div/div[2]/span/span[2]/i')).click();
+      // var paginatorAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      // expect(paginator.getText()).toBe(paginatorAfter1.getText());
+      // });
+      it('Check itemsperpage Text', function () {
+      browser.refresh();
+      var itemsperpage = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[1]/div'));
+      expect(itemsperpage.getText()).toEqual('Items per page');
+      });
+      // it('itemsperpage pagination', function () {
+      //   var paginator = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      //   element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[2]/div'));
+      //   element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[1]/span')).click();
+      //   var paginatorAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      //   element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[2]/div'));
+      //   element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[3]/span')).click();
+      //   var paginatorAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      //   expect(paginator.getText()).toBe(paginatorAfter1.getText());
+      // });
+      // it('itemsperpage pagination', function () {
+      //   var paginator = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      //     //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[2]/div'));
+      //     element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/button[4]/span/svg')).click();
+      //     var paginatorAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      //     //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[2]/div'));
+      //     element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/button[1]/span/svg')).click();
+      //     var paginatorAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+      //     expect(paginator.getText()).toBe(paginatorAfter1.getText());
+      //    });
+      it('Change customer to Petrobras', function () {
+        browser.refresh();
+        element(by.className('nav-bar-list')).click();
+        element(by.xpath('/html/body/div[6]/div[2]/div/div/div/button[5]')).click();
+      });
+      it('Check Header Text', function () {
+        var text = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[1]/bhge-page-header/div'));
+        expect(text.getText()).toEqual('Previsão de Manutenção Preventiva');
+      });
+      it('Check MÊS Filter Text', function () {
+      var MÊS = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[1]/div/div[2]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+      expect(MÊS.getText()).toEqual('MÊS');
+      });
+      it('Check NÍVELDEMANUTENÇÃO Filter Text', function () {
+      var NÍVELDEMANUTENÇÃO = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[1]/div/div[3]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+      expect(NÍVELDEMANUTENÇÃO.getText()).toEqual('NÍVEL DE MANUTENÇÃO');
+      });
+      it('Check CATEGORIADOÍTEM Filter Text', function () {
+      var CATEGORIADOÍTEM = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[1]/div/div[4]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+      expect(CATEGORIADOÍTEM.getText()).toEqual('CATEGORIA DO ÍTEM');
+      });
+      it('Check ANO', function () {
+      var ANO = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[1]/div/div[5]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+      expect(ANO.getText()).toEqual('ANO');
+      });
+      it('Quebra por nível de manutenção Chart Text', function () {
+      var Quebraporníveldemanutenção = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[1]/div[1]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+      expect(Quebraporníveldemanutenção.getText()).toBe('Quebra por nível de manutenção');
+      });
+      it('Quebra por categoria do ítem Chart Text', function () {
+      var Quebraporcategoriadoítem = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[1]/div[2]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+      expect(Quebraporcategoriadoítem.getText()).toBe('Quebra por categoria do ítem');
+      });
+      it('Custo de manutenção por nível de manutenção Chart Text', function () {
+      var Custodemanutençãoporníveldemanutenção = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[1]/div[3]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+      expect(Custodemanutençãoporníveldemanutenção.getText()).toBe('Custo de manutenção por nível de manutenção');
+      });
+      it('Custo de manutenção por categoria de ítem Chart Text', function () {
+      var Custodemanutençãoporcategoriadeítem = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[1]/div[4]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+      expect(Custodemanutençãoporcategoriadeítem.getText()).toBe('Custo de manutenção por categoria de ítem');
+      });
+      it('Contator de manutenção por nível de manutenção Chart Text', function () {
+      var Contatordemanutençãoporníveldemanutenção = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[1]/div[5]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+      expect(Contatordemanutençãoporníveldemanutenção.getText()).toBe('Contator de manutenção por nível de manutenção');
+     });
+     it('contador de manutenção por categoria do ítem Chart Text', function () {
+     var contadordemanutençãoporcategoriadoítem = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[1]/div[6]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+     expect(contadordemanutençãoporcategoriadoítem.getText()).toBe('contador de manutenção por categoria do ítem');
+     });
+     it('Horas de manutenção por nível de manutenção Chart Text', function () {
+     var Horasdemanutençãoporníveldemanutenção = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[1]/div[7]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+     expect(Horasdemanutençãoporníveldemanutenção.getText()).toBe('Horas de manutenção por nível de manutenção');
+     });
+     it('Horas de manutenção por categoria do ítem Chart Text', function () {
+     var Horasdemanutençãoporcategoriadoítem = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[1]/div[8]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+     expect(Horasdemanutençãoporcategoriadoítem.getText()).toBe('Horas de manutenção por categoria do ítem');
+     });
+     it('Número do ítem Table Header Check', function () {
+      var item = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[1]/div/button'));
+      expect(item.getText()).toEqual('Número do ítem');
+      });
+     it('número de série Table Header Check', function () {
+     var númerodesérie = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[1]/div/button'));
+     expect(númerodesérie.getText()).toEqual('número de série');
+     });
+     it('Número de ativos Table Header Check', function () {
+     var Númerodeativos = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[3]/div/div[1]/div/button'));
+     expect(Númerodeativos.getText()).toEqual('Número de ativos');
+     });
+     it('Descrição do ítem Table Header Check', function () {
+     var Descriçãodoítem = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[4]/div/div[1]/div/button'));
+     expect(Descriçãodoítem.getText()).toEqual('Descrição do ítem');
+     });
+     it('Última atividade trabalhada Table Header Check', function () {
+     var Últimaatividadetrabalhada = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[5]/div/div[1]/div/button'));
+     expect(Últimaatividadetrabalhada.getText()).toEqual('Última atividade trabalhada');
+     });
+      it('Data de finalização Table Header Check', function () {
+      var Datadefinalização = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[6]/div/div[1]/div/button'));
+      expect(Datadefinalização.getText()).toEqual('Data de finalização');
+     });
+     it('Programar data de previsão Table Header Check', function () {
+     var Programardatadeprevisão = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[7]/div/div[1]/div/button'));
+     expect(Programardatadeprevisão.getText()).toEqual('Programar data de previsão');
+     });
+     it('Agendar atividade de previsão Table Header Check', function () {
+      var Agendaratividadedeprevisão = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[8]/div/div[1]/div/button'));
+      expect(Agendaratividadedeprevisão.getText()).toEqual('Agendar atividade de previsão');
+     });
+    //  it('Exportar para o Excel', function () {
+    //  element(by.id('btnExport')).click();
+    //  });
+     it('Exportar Catalogo', function () {
+      browser.refresh();
+      element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[2]/div/button')).click();
+     });
+      it('Check Itens por página Text', function () {
+       var Itensporpágina = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-maintenance-forecast/div/div[3]/div[2]/div[2]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[1]/div'));
+      expect(Itensporpágina.getText()).toEqual('Itens por página');
+     });
+    });

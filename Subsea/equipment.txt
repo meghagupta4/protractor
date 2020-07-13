@@ -1,0 +1,312 @@
+describe('Equipment Page', function () {
+  it('Login Page', function () {
+    browser.waitForAngularEnabled(false);
+    browser.get('https://qa-engagesubsea.us04.bhge.com');
+    element(by.id('username')).sendKeys('502766103');
+    element(by.id('password')).sendKeys('Engage_2019_Ge');
+    element(by.id('submitFrm')).click();
+    browser.waitForAngularEnabled(true);
+  });
+
+  it('Click of customer dropdown', function () {
+    element(by.className('nav-bar-list')).click();
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/button[2]')).click();
+  });
+
+  it('Change customer to Chevron', function () {
+    element(by.className('nav-bar-list')).click();
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/button[2]')).click();
+  });
+
+  it('Open Equipment Page', function () {
+    //element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[2]/a/button')).click();
+    //element(by.xpath('/html/body/div[4]/div[2]/div/div/div/button[1]')).click();
+    browser.get('https://qa-engagesubsea.us04.bhge.com/equipment');
+  });
+
+  it('Check Header Text', function () {
+    var text = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[1]/bhge-page-header/div'));
+    expect(text.getText()).toEqual('Equipment Dashboard');
+  });
+
+  it('Check itemStatus Filter Text', function () {
+    var itemStatus = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[1]/div/div[2]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+    expect(itemStatus.getText()).toEqual('ITEM STATUS');
+  });
+  it('Check customerEntity Filter Text', function () {
+    var customerEntity = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[1]/div/div[3]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+    expect(customerEntity.getText()).toEqual('CUSTOMER ENTITY');
+  });
+
+  it('Check itemType Filter Text', function () {
+    var itemType = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[1]/div/div[4]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+    expect(itemType.getText()).toEqual('ITEM TYPE');
+  });
+
+  it('Check preventativeMaintenanceFlag Filter Text', function () {
+    var preventativeMaintenanceFlag = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[1]/div/div[5]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+    expect(preventativeMaintenanceFlag.getText()).toEqual('PREVENTATIVE MAINTENANCE');
+  });
+
+  it('Check itemCategory Filter Text', function () {
+    var itemCategory = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[1]/div/div[6]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+    expect(itemCategory.getText()).toEqual('ITEM CATEGORY');
+  });
+
+  it('Check storageType Filter Text', function () {
+    var storageType = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[1]/div/div[7]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'));
+    expect(storageType.getText()).toEqual('STORAGE TYPE');
+  });
+
+  it('Check itemStatus Filter', function () {
+    var totalCount = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[1]/div/div[2]/mat-form-field/div/div[1]/div')).click();
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[2]')).click();
+    browser.sleep(2000);
+    var totalCountAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[2]/mat-pseudo-checkbox')).click();
+    element(by.xpath('/html/body/div[4]/div[1]')).click();
+    var totalCountAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    expect(totalCount.getText()).toBe(totalCountAfter1.getText());
+    browser.sleep(1000);
+  });
+
+  it('Check customerEntity Filter', function () {
+    var totalCount = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[1]/div/div[3]/mat-form-field/div/div[1]/div')).click();
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[3]')).click();
+    var totalCountAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[3]/mat-pseudo-checkbox')).click();
+    element(by.xpath('/html/body/div[4]/div[1]')).click();
+    var totalCountAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    expect(totalCount.getText()).toBe(totalCountAfter1.getText());
+    browser.sleep(1000);
+  });
+
+  it('Check itemType Filter', function () {
+    var totalCount = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[1]/div/div[4]/mat-form-field/div/div[1]/div')).click();
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[3]')).click();
+    var totalCountAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[3]/mat-pseudo-checkbox')).click();
+    element(by.xpath('/html/body/div[4]/div[1]')).click();
+    var totalCountAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    expect(totalCount.getText()).toBe(totalCountAfter1.getText());
+    browser.sleep(1000);
+  });
+
+  it('Check preventativeMaintenanceFlag Filter', function () {
+    var totalCount = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[1]/div/div[5]/mat-form-field/div/div[1]/div')).click();
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[3]')).click();
+    var totalCountAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[3]/mat-pseudo-checkbox')).click();
+    browser.sleep(3000);
+    element(by.xpath('/html/body/div[4]/div[1]')).click();
+    var totalCountAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    expect(totalCount.getText()).toBe(totalCountAfter1.getText());
+    browser.sleep(1000);
+  });
+
+  it('Check itemCategory Filter', function () {
+    var totalCount = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[1]/div/div[6]/mat-form-field/div/div[1]/div')).click();
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[3]')).click();
+    var totalCountAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[3]/mat-pseudo-checkbox')).click();
+    element(by.xpath('/html/body/div[4]/div[1]')).click();
+    var totalCountAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    expect(totalCount.getText()).toBe(totalCountAfter1.getText());
+    browser.sleep(1000);
+  });
+
+  it('Check Storage Type Filter', function () {
+    var totalCount = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[1]/div/div[7]/mat-form-field/div/div[1]/div')).click();
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[3]')).click();
+    var totalCountAfter = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[3]/mat-pseudo-checkbox')).click();
+    element(by.xpath('/html/body/div[4]/div[1]')).click();
+    var totalCountAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    expect(totalCount.getText()).toBe(totalCountAfter1.getText());
+    browser.sleep(1000);
+  });
+
+  it('Clear All', function () {
+    var totalCount = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[1]/div/div[2]/mat-form-field/div/div[1]/div')).click();
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[2]')).click();
+    element(by.xpath('/html/body/div[4]/div[1]')).click();
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[1]/div/div[1]/button')).click();
+    var totalCountAfter1 = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    expect(totalCount.getText()).toBe(totalCountAfter1.getText());
+    browser.sleep(1000);
+  });
+
+  it('Show Map', function () {
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[1]/mat-accordion/mat-expansion-panel/mat-expansion-panel-header/span[1]/mat-panel-title')).click();
+    browser.sleep(3000);
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[1]/mat-accordion/mat-expansion-panel/div/div/subsea-equipment-google-map/agm-map/div[1]/div/div/div[1]/div[3]/div/div[3]/div[2]/img')).click();
+    browser.sleep(1000);
+  });
+  it('Legend Click', function () {
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[1]/mat-accordion/mat-expansion-panel/div/div/subsea-equipment-google-map/agm-map/div[1]/div/div/div[1]/div[3]/div/div[3]/div[2]/img')).click();
+    browser.sleep(1000);
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[1]/mat-accordion/mat-expansion-panel/div/div/subsea-equipment-google-map/agm-map/div[1]/div/div/div[1]/div[3]/div/div[4]/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/p[2]/span')).click();
+  });
+  it('Contact Form', function () {
+    element(by.id('firstName')).sendKeys('Rizwan');
+    element(by.id('lastName')).sendKeys('Khan');
+    element(by.id('company')).sendKeys('BH');
+    element(by.xpath('/html/body/div[4]/div[2]/div/mat-dialog-container/subsea-feedback-form/form/div/div[5]/div[2]/mat-form-field/div/div[1]/div/input')).sendKeys('rizwan.khan@bhge.com');
+    element(by.id('description')).sendKeys('test protractor');
+    element(by.id('phone')).sendKeys('7506033020');
+    var foo = element(by.id('submitButton'));
+    expect(foo.isEnabled()).toBe(true);
+    element(by.xpath('/html/body/div[4]/div[2]/div/mat-dialog-container/subsea-feedback-form/form/div/div[1]/button')).click();
+    browser.sleep(3000);
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[1]/mat-accordion/mat-expansion-panel/mat-expansion-panel-header/span[1]/mat-panel-title')).click();
+    browser.sleep(1000);
+  });
+
+  it('itemStatus Chart Text', function () {
+    var itemStatus = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[3]/div[1]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+    expect(itemStatus.getText()).toBe('Item Status');
+  });
+  it('customerEntity Chart Text', function () {
+    var customerEntity = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[3]/div[2]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+    expect(customerEntity.getText()).toBe('Customer Entity');
+  });
+  it('itemType Chart Text', function () {
+    var itemType = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[3]/div[3]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+    expect(itemType.getText()).toBe('Item Type');
+  });
+  it('preventativeMaintenanceFlag Chart Text', function () {
+    var preventativeMaintenanceFlag = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[3]/div[4]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+    expect(preventativeMaintenanceFlag.getText()).toBe('Preventative Maintenance Flag');
+  });
+  it('itemCategory Chart Text', function () {
+    var itemCategory = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[3]/div[5]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+    expect(itemCategory.getText()).toBe('Item Category');
+  });
+
+  it('storageType Chart Text', function () {
+    var storageType = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[3]/div[6]/bhge-chart-card/mat-card/mat-card-header/div/mat-card-title'));
+    expect(storageType.getText()).toBe('Storage Type');
+  });
+
+  it('Preventative Maintenance Test with Y', function () {
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[1]/div/div[5]/mat-form-field/div/div[1]/div')).click();
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/mat-option[4]/mat-pseudo-checkbox')).click();
+    element(by.xpath('/html/body/div[4]/div[1]')).click();
+
+    var eTotalCount = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[1]/mat-card/div[2]/div[1]'));
+    var pTotalCount = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[2]/div[2]/mat-card/div[2]/div[1]'));
+    expect(eTotalCount.getText()).toBe(pTotalCount.getText());
+
+    var customerEntity = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[3]/div[2]/bhge-chart-card/mat-card/bhge-chart/highcharts-chart/div/span/div[2]'));
+    expect(customerEntity.getText()).toBe(pTotalCount.getText());
+    var itemType = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[3]/div[3]/bhge-chart-card/mat-card/bhge-chart/highcharts-chart/div/span/div[2]'));
+    expect(itemType.getText()).toBe(pTotalCount.getText());
+    var preventativeMaintenanceFlag = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[3]/div[4]/bhge-chart-card/mat-card/bhge-chart/highcharts-chart/div/span/div[2]'));
+    expect(preventativeMaintenanceFlag.getText()).toBe(pTotalCount.getText());
+    var storageType = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[3]/div[6]/bhge-chart-card/mat-card/bhge-chart/highcharts-chart/div/span/div[2]'));
+    expect(storageType.getText()).toBe(pTotalCount.getText());
+  });
+
+  it('Table Header Check', function () {
+    var itemNumber = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[1]/div/button'));
+    expect(itemNumber.getText()).toEqual('Item Number');
+
+    var searialNumber = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[2]/div/div[1]/div/button'));
+    expect(searialNumber.getText()).toEqual('Serial Number');
+
+    var assetNumber = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[3]/div/div[1]/div/button'));
+    expect(assetNumber.getText()).toEqual('Asset Number');
+
+    var itemNumber = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[4]/div/div[1]/div/button'));
+    expect(itemNumber.getText()).toEqual('Item Description');
+
+    var locator = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[5]/div/div[1]/div/button'));
+    expect(locator.getText()).toEqual('Locator');
+
+    var lastCompletionDate = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[6]/div/div[1]/div/button'));
+    expect(lastCompletionDate.getText()).toEqual('Last Completion Date');
+
+    var lastActivityType = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[7]/div/div[1]/div/button'));
+    expect(lastActivityType.getText()).toEqual('Last Activity Type');
+
+    var itemNumber = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[8]/div/div[1]/div/button'));
+    expect(itemNumber.getText()).toEqual('Last Work Order');
+
+    var nextActivity = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[9]/div/div[1]/div/button'));
+    expect(nextActivity.getText()).toEqual('Next Activity');
+
+    var nextMaintenanceActivityDate = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[10]/div/div[1]/div/button'));
+    expect(nextMaintenanceActivityDate.getText()).toEqual('Next Maintenance Activity Date');
+  });
+
+  it('Invalid search', function () {
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/input')).sendKeys('Rizwan');
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[2]/div')).click();
+    var name = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/div/mat-paginator/div/div/div[2]/div'));
+    expect(name.getText()).toBe('No results');
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/span/i')).click();
+  });
+
+  it('Valid search', function () {
+    var searchText = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[1]/div/div'));
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/input')).sendKeys(searchText.getText());
+    var result = element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/tbody/tr[1]/td[1]/div/div'));
+    expect(result.getText()).toBe(searchText.getText());
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[2]/subsea-equipment/div/div[2]/div[2]/div[4]/div/bhge-mat-table-card/mat-card/div[3]/table/thead/tr/th[1]/div/div[2]/span/span/i')).click();
+  });
+
+  it('GoTo Home Page', function () {
+    element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[1]/a/button')).click();
+  });
+
+  it('Check Chevron Visibility', function () {
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[2]/a/button')).isPresent()).toBe(true);
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[3]/a/button')).isPresent()).toBe(true);
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[4]/a/button')).isPresent()).toBe(true);
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[5]/a/button')).isPresent()).toBe(true);
+  });
+
+  it('Check Petrobras Visibility', function () {
+    element(by.className('nav-bar-list')).click();
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/button[5]')).click();
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[2]/a/button')).isPresent()).toBe(true);
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[3]/a/button')).isPresent()).toBe(true);
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[4]/a/button')).isPresent()).toBe(false);
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[5]/a/button')).isPresent()).toBe(false);
+
+  });
+
+  it('Check Inpex Visibility', function () {
+    element(by.className('nav-bar-list')).click();
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/button[4]')).click();
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[2]/a/button')).isPresent()).toBe(true);
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[3]/a/button')).isPresent()).toBe(true);
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[4]/a/button')).isPresent()).toBe(true);
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[5]/a/button')).isPresent()).toBe(true);
+  });
+
+  it('Check Woodside Visibility', function () {
+    element(by.className('nav-bar-list')).click();
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/button[9]')).click();
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[2]/a/button')).isPresent()).toBe(true);
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[3]/a/button')).isPresent()).toBe(true);
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[4]/a/button')).isPresent()).toBe(false);
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[5]/a/button')).isPresent()).toBe(false);
+  });
+
+  it('Check Shell UK Visibility', function () {
+    element(by.className('nav-bar-list')).click();
+    element(by.xpath('/html/body/div[4]/div[2]/div/div/div/button[6]')).click();
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[2]/a/button')).isPresent()).toBe(true);
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[3]/a/button')).isPresent()).toBe(true);
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[4]/a/button')).isPresent()).toBe(false);
+    expect(element(by.xpath('/html/body/subsea-root/div/subsea-shell/div/div[2]/div[1]/subsea-top-nav-bar/div/div[1]/nav/div/div[5]/a/button')).isPresent()).toBe(false);
+  });
+});
